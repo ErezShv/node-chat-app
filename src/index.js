@@ -29,7 +29,7 @@ io.on('connection',(socket) => {
         socket.join(user.room)
         socket.emit('message', generateMessage('Welcome!'))
         socket.broadcast.to(room).emit('message', generateMessage(`${user.username} has joined!`))
-        console.log(`join roomData ${user.room}, ${getUsersInRoom(user.room)}`)
+        console.log(`join roomData ${user.room}, ${ getUsersInRoom(user.room)}`)
         io.to(user.room).emit(`roomData`, {
             room: user.room,
             users: getUsersInRoom(user.room)
@@ -67,7 +67,6 @@ io.on('connection',(socket) => {
 })
 
 server.listen(port, () => {
-    console.log(port)
-    console.log('Server is up on port ${port}!')
+    console.log(`Server is up on port ${port}!`)
 })
 

@@ -40,9 +40,6 @@ const getUser = (id) => {
 
 
 const getUsersInRoom = (room) => {
-    console.log("getUsersInRoom room:", room)
-    console.log("getUsersInRoom users:", users)
-    console.log("getUsersInRoom filter users:", users.filter((user) => user.room === room))
     return users.filter((user) => user.room === room)
 }
 

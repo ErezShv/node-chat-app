@@ -18,7 +18,6 @@ app.use(express.static(publicDirectoryPath))
 
 io.on('connection',(socket) => {
     console.log('New websocket connection')
-
     socket.on('join', ({ username, room}, callback) => {
         const { error, user } = addUser({ id: socket.id, username, room})
 
@@ -39,15 +38,15 @@ io.on('connection',(socket) => {
     })
 
     socket.on('sendMessage', (message, callback) => {
-        console.log('get message: ', message)
+        // console.log('get message: ', message)
         const user = getUser(socket.id)
-        console.log('get message user: ', user)
+        // console.log('get message user: ', user)
         io.to(user.room).emit('message', generateMessage(user.username, message))
         callback('deliverd')
     })
 
     socket.on('sendLocation', (coords, callback) => {
-        console.log("sendLocation")
+        // console.log("sendLocation")
         const user = getUser(socket.id)
         io.to(user.room).emit('locationMessage', generateLocationMessage(user.username, `https://google.com/maps?q=${coords.latitude},${coords.longitude}`))
         callback()
